@@ -1,0 +1,26 @@
+{
+  "name": "time-analytic-control",
+  "author": "Yevhen Shmatko <yevhen.shmatko@gmail.com>",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "TypeScript",
+    "React.js",
+    "Node.js",
+    "Express",
+    "MongoDB"
+  ],
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YEvhen-SHmatko/TimeAnalyticControl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YEvhen-SHmatko/TimeAnalyticControl/issues"
+  },
+  "homepage": "https://github.com/YEvhen-SHmatko/TimeAnalyticControl#readme"
+}
