@@ -3,7 +3,7 @@
   "author": "Yevhen Shmatko <yevhen.shmatko@gmail.com>",
   "license": "MIT",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server",
   "keywords": [
     "TypeScript",
     "React.js",
