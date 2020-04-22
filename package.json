@@ -3,17 +3,47 @@
   "author": "Yevhen Shmatko <yevhen.shmatko@gmail.com>",
   "license": "MIT",
   "version": "1.0.0",
-  "description": "Dev",
+  "description": "client",
   "keywords": [
-    "TypeScript",
     "React.js",
     "Node.js",
     "Express",
     "MongoDB"
   ],
-  "main": "app.ts",
+  "private": true,
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.35",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/react-router-dom": "^5.1.4"
+  },
+  "dependencies": {
+    "@types/react-transition-group": "^4.2.4",
+    "gh-pages": "^2.2.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "^4.3.0",
+    "typescript": "^3.7.5"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "prenetlify": "npm run build",
+    "netlify": "netlify deploy -d build --prod"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "repository": {
     "type": "git",
@@ -22,5 +52,16 @@
   "bugs": {
     "url": "https://github.com/YEvhen-SHmatko/TimeAnalyticControl/issues"
   },
-  "homepage": "https://github.com/YEvhen-SHmatko/TimeAnalyticControl#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
