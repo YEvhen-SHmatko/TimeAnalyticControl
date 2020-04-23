@@ -7,17 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import * as SEND from "../../services/sendToDb";
 const INIT_STATE = {
   formData: {
-    name: "test",
-    email: "test@test.test",
+    nameOrEmail: "test",
     password: "test123",
   },
   disableSabmit: false,
   errors: {
-    name: {
-      text: "",
-      bool: null,
-    },
-    email: {
+    nameOrEmail: {
       text: "You have entered an invalid email address!",
       bool: null,
     },
@@ -27,7 +22,7 @@ const INIT_STATE = {
     },
   },
 };
-export default class SignUpSection extends Component {
+export default class SignInSection extends Component {
   static propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -46,8 +41,7 @@ export default class SignUpSection extends Component {
   };
   handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "email") this.validationEmail(value);
-    if (name === "name") this.validationEmpty(name, value);
+    if (name === "nameOrEmail") this.validationEmpty(name, value);
     if (name === "password") this.validationEmpty(name, value);
     this.disableSabmit();
     this.setState({
@@ -62,13 +56,6 @@ export default class SignUpSection extends Component {
     const { errors } = this.state;
     this.setState({ errors: { ...errors, [key]: { ...errors[key], bool } } });
   };
-  validationEmail = (email) => {
-    // eslint-disable-next-line no-useless-escape
-    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const bool = email.match(mailformat) ? false : true;
-    const { errors } = this.state;
-    this.setState({ errors: { ...errors, email: { ...errors.email, bool } } });
-  };
   disableSabmit = () => {
     const { errors } = this.state;
     const disabled =
@@ -80,14 +67,14 @@ export default class SignUpSection extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { name: username, email, password } = this.state.formData;
-    const url = "/auth/register";
-    const body = { username, email, password };
-    SEND.register(url, body)
-      .then((res) => {
-        if (res.data.error) throw res.data.error;
-        console.log(res);
+    SEND.register({ username, email, password })
+      .then(function (response) {
+        if (response.data.error)
+          alert(`${response.data.status}, ${response.data.error}`);
       })
-      .catch(alert);
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   render() {
     console.log(this.props);

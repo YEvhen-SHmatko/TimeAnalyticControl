@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SignUpSection from "../components/SignUpSection/SignUpSection";
+
+import SignInSection from "../components/SignInSection/SignInSection";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,15 +14,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUpPage = ({ history, location, match }) => {
+const SignInPage = ({ history, location, match }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <SignUpSection history={history} location={location} match={match} />
+      <SignInSection history={history} location={location} match={history} />
     </div>
   );
 };
-SignUpPage.propstypes = {
+SignInPage.propstypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -34,4 +35,4 @@ SignUpPage.propstypes = {
     }),
   }).isRequired,
 };
-export default SignUpPage;
+export default SignInPage;
