@@ -2,7 +2,7 @@ const bcryptjs = require("bcryptjs");
 const User = require("../../modules/db/schemas/user");
 
 const register = (req, res) => {
-  const body = req.body;
+  const body = req.body.data || req.body;
   const user = { ...body, password: bcryptjs.hashSync(body.password, 10) };
   const newUser = new User(user);
 
@@ -19,7 +19,7 @@ const register = (req, res) => {
     const message = { status: "user was not saved" };
     if (!!error.keyValue.email) message.error = "dublicate email";
     if (!!error.keyValue.username) message.error = "dublicate user name";
-    res.writeHead(406, { "Content-type": "application/json" });
+    res.writeHead(200, { "Content-type": "application/json" });
     res.end(JSON.stringify(message));
   };
 

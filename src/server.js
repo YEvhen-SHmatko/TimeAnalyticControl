@@ -14,6 +14,14 @@ const startServer = async (port) => {
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(morgan("dev"))
+    .use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
+      next();
+    })
     .use("/", authRouter)
     .use(verifyToken)
     .use("/", router)
