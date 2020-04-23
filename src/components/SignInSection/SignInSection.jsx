@@ -7,12 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import * as SEND from "../../services/sendToDb";
 const INIT_STATE = {
   formData: {
-    nameOrEmail: "test",
+    username: "test",
     password: "test123",
   },
   disableSabmit: false,
   errors: {
-    nameOrEmail: {
+    username: {
       text: "You have entered an invalid email address!",
       bool: null,
     },
@@ -41,7 +41,7 @@ export default class SignInSection extends Component {
   };
   handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "nameOrEmail") this.validationEmpty(name, value);
+    if (name === "username") this.validationEmpty(name, value);
     if (name === "password") this.validationEmpty(name, value);
     this.disableSabmit();
     this.setState({
@@ -66,8 +66,8 @@ export default class SignInSection extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name: username, email, password } = this.state.formData;
-    SEND.register({ username, email, password })
+    const { username, password } = this.state.formData;
+    SEND.register({ username, password })
       .then(function (response) {
         if (response.data.error)
           alert(`${response.data.status}, ${response.data.error}`);
@@ -83,29 +83,15 @@ export default class SignInSection extends Component {
         <Grid container spacing={2} justify="center" alignItems="center">
           <Grid item xs={12}>
             <TextField
-              autoComplete="name"
               variant="outlined"
               required
               fullWidth
-              id="name"
-              name="name"
-              value={this.state.formData.name}
+              id="username"
+              label="Name/Email Address"
+              value={this.state.formData.username}
               onChange={this.handleChange}
-              label="Name"
-              autoFocus
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              value={this.state.formData.email}
-              onChange={this.handleChange}
-              name="email"
-              autoComplete="email"
+              name="username"
+              autoComplete="username"
             />
           </Grid>
           <Grid item xs={12}>
@@ -131,14 +117,14 @@ export default class SignInSection extends Component {
                   variant="contained"
                   color="primary"
                 >
-                  Sign Up
+                  Login
                 </Button>
               </Grid>
             </Grid>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="/auth/login" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/auth/login" variant="body2" replace>
+                  you don't account? Sign un
                 </Link>
               </Grid>
             </Grid>
