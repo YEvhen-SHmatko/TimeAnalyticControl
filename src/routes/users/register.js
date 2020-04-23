@@ -2,7 +2,7 @@ const bcryptjs = require("bcryptjs");
 const User = require("../../modules/db/schemas/user");
 
 const register = (req, res) => {
-  const body = req.body.data || req.body;
+  const body = req.body;
   const user = { ...body, password: bcryptjs.hashSync(body.password, 10) };
   const newUser = new User(user);
 
